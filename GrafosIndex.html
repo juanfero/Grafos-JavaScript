@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Definición de metadatos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grafo en html</title>
+  <!-- Importar la librería vis.js desde CDN -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <!-- Vincular una hoja de estilo externa -->
+  <link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+
+
+<body>
+  <button onclick="guardarDatosComoJSON()">Guardar Datos</button>
+  <button onclick="cargarDatosDesdeJSON()">Cargar Datos</button>
+  <!-- Título centrado en la página -->
+  <h1 align=center><font face="Arial Black"> Representación de un Grafo</font></h1>
+  <div>
+    <!-- Tabla con opciones y botones -->
+    <table border=0 cellpacing=4 cellpadding=5 bordercolor="" align="center">
+      <tr>
+        <!-- Primera columna: Crear arista -->
+        <td width="300" valign="top" align="center"><strong><label for="direction"><font face="Arial Black"> Crear arista:</font></label><br>
+          <input type="radio" id="oneDirection" name="direcion" value="one"> Un sentido <br>
+          <input type="radio" id="bothDirections" name="direcion" value="both"> Ambos sentidos<br>
+          <button id="addEdgeButton" disabled>Agregar Arista</button><br><br></strong></td>
+        
+        <!-- Segunda columna: Agregar nodo -->
+        <td width="300" valign="top" align="center"><strong><font face="Arial Black"> Crear Nodo:</font><br>
+          <button id="Agregar">Agregar Nodo</button><br><br></strong></td>
+
+        <!-- Tercera columna: Eliminar elementos -->
+        <td width="300" valign="top" align="center"><strong><font face="Arial Black"> Eliminar elementos:</font><br>
+          <button id="deleteNodeButton">Eliminar Nodo</button><br>
+          <button id="deleteEdgeButton">Eliminar Arista</button><br><br></strong></td>
+        
+        <!-- Cuarta columna: Editar elementos -->
+        <td width="300" valign="top" align="center"><strong><font face="Arial Black"> Editar elementos:</font><br>
+          <button id="editNodeButton">Editar Nodo</button><br>
+          <button id="editEdgeButton">Editar Arista</button><br><br></strong></td>
+      </tr>
+    </table>
+  </div>
+  <!-- Contenedor del grafo -->
+  <div id="grafico"></div>
+  <h1>Matrices de Grafo</h1>
+  <button onclick="actualizarMatrices()">Actualizar Matrices</button>
+
+  <h2>Matriz de Adyacencia</h2>
+  <table id="adyacencia">
+    <!-- La tabla será generada por JavaScript -->
+  </table>
+
+  <h2>Matriz de Incidencia</h2>
+  <table id="incidencia">
+    <!-- La tabla será generada por JavaScript -->
+  </table>
+
+  <!-- Botón para resaltar la Ruta Mínima -->
+<button onclick="highlightShortestPath(dijkstra(nodes, 1), 1)">Resaltar Ruta Mínima</button>
+
+<h2>Solución del Algoritmo de Dijkstra:</h2>
+<div id="grafico2"></div>
+<textarea id="solutionTextArea" rows="10" cols="50" readonly align="center"></textarea>
+
+<!-- Botón para resaltar la Ruta Crítica -->
+<button onclick="highlightCriticalPathInGraph(criticalPath(nodes)); displayCriticalPathSolution(criticalPath(nodes));">Resaltar Ruta Crítica</button>
+<h2>Solución camino critico:</h2>
+<div id="grafico3"></div>
+<textarea id="criticalPathSolution" rows="10" cols="50" readonly align="center"></textarea>
+
+
+  <!-- Script JavaScript para interacciones y representación del grafo -->
+  <script src="script.js"></script>
+  </body>
+</html> 
